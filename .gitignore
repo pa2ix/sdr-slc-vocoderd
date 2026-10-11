@@ -1,0 +1,16 @@
+# Build output (see Makefile clean target)
+*.o
+/sdr-slc-vocoderd
+/ambe3k_loopback
+/ambe3k_sim
+/build/
+tests/test_rtp
+tests/test_frames
+tests/test_swvoc
+tests/test_arbiter
+tests/test_arbiter_tsan
+tests/gen_frames
+__pycache__/
+
+# macOS
+.DS_Store

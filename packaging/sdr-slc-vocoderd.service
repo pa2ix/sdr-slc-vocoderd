@@ -1,0 +1,18 @@
+[Unit]
+Description=SDR-SLC vocoder service (AMBE-3000 + mbelib-neo)
+After=network-online.target avahi-daemon.service
+Wants=network-online.target avahi-daemon.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/sdr-slc-vocoderd --port 4630
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=true
+# The AMBE-3000 (DVstick30 / ThumbDV) is a USB serial device; run as a user
+# in the group that owns /dev/ttyUSB* (dialout on Debian / Raspberry Pi OS),
+# or as root. Without access the daemon runs on mbelib-neo and says why.
+SupplementaryGroups=dialout
+
+[Install]
+WantedBy=multi-user.target

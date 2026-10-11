@@ -1,0 +1,3 @@
+[submodule "third_party/mbelib-neo"]
+	path = third_party/mbelib-neo
+	url = https://github.com/arancormonk/mbelib-neo
