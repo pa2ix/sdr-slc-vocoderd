@@ -155,7 +155,9 @@ def main():
         cl = Client()
         cl.cmd("hello", supported_protocol_versions=["1.0"])
 
-        print("1  capabilities")
+        p = cl.cmd("ping")
+        check(p["status"] == "ok" and p["result"] == {} and p["id"] == str(cl.n), "ping reply: %r" % p)
+        print("1  capabilities (and ping: %s)" % p["status"])
         caps = cl.cmd("get_capabilities")["result"]["capabilities"]["codec"]
         ids = [f["id"] for f in caps["formats"]]
         print("   formats", ids, "capacity", caps["capacity"], "backend", caps["implementation"]["backend_version"])

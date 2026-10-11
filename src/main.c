@@ -657,11 +657,14 @@ static json_object *handle(struct slc_server *srv, int fd, json_object *req, boo
     const char *cmd = jget_str(req, "command");
     if (!id) id = "";
     if (!cmd) return resp_err(id, "invalid_request", "missing command");
-    LOGV(1, "cmd '%s' id='%s'", cmd, id);
+    if (strcmp(cmd, "ping") != 0) LOGV(1, "cmd '%s' id='%s'", cmd, id);   /* pings every 10 s: -vv only */
+    else LOGV(2, "cmd 'ping' id='%s'", id);
     if (strcmp(cmd, "hello") != 0 && !*hello) return resp_err(id, "invalid_request", "hello must be first");
 
     if (!strcmp(cmd, "hello")) return cmd_hello(srv, id, jp, hello);
     if (!strcmp(cmd, "get_capabilities")) return resp_ok(id, capabilities());
+    /* ping (SDR-SLC-CP envelope command): liveness only, no state change. */
+    if (!strcmp(cmd, "ping")) return resp_ok(id, NULL);
     if (!strcmp(cmd, "open_stream")) return cmd_open_stream(srv, fd, id, jp);
 
     if (!strcmp(cmd, "start_codec") || !strcmp(cmd, "stop_codec") || !strcmp(cmd, "close_stream")) {
