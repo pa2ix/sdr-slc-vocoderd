@@ -21,7 +21,7 @@
 #include <netinet/in.h>
 #include "vocoder.h"
 
-#define SLC_VERSION "1.0.0"
+#define SLC_VERSION "1.0.1"
 #define SLC_DEFAULT_PORT 4630
 #define SLC_MAX_JSON 65536
 

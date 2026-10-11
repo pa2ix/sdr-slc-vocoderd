@@ -1,3 +1,8 @@
+# sdr-slc-vocoderd 1.0.1
+
+- `ping` is answered (`ok`, empty result) per SDR-SLC-CP. 1.0.0, like
+  codecd, replied `unknown_command`. Pings are logged at `-vv` only.
+
 # sdr-slc-vocoderd 1.0.0
 
 First release. Successor of sdr-slc-codecd 1.0, forked from its commit
@@ -16,8 +21,6 @@ First release. Successor of sdr-slc-codecd 1.0, forked from its commit
   disappears or stops answering.
 - 16 streams (was 4), TCP keepalive on control connections, and a `busy` error
   that lists the slot holders.
-- `ping` answered (`ok`, empty result) per SDR-SLC-CP; codecd replied
-  `unknown_command`.
 - Clean shutdown on SIGTERM regardless of which thread receives it.
 - New: `ambe3k_sim` (simulated chip on a pty), unit tests, an end-to-end
   test, and a ThreadSanitizer target.
